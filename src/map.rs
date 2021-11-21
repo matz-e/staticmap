@@ -159,7 +159,10 @@ impl StaticMap {
         Ok(())
     }
 
-    fn render(&mut self) -> Result<Pixmap> {
+    /// Render the map and return the corresponding Pixmap
+    ///
+    /// May panic if any feature has invalid bounds.
+    pub fn render(&mut self) -> Result<Pixmap> {
         let bounds = self.bounds.build(&self.tools);
 
         let mut image = Pixmap::new(bounds.width, bounds.height).ok_or(Error::InvalidSize)?;
